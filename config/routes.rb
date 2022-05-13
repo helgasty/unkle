@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post 'login', to: 'auth#login'
       get 'user', to: 'users#show'
       post 'user', to: 'users#create'
+      get 'option', to: 'options#list'
     end
   end
 end
