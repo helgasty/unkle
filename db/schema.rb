@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_13_080231) do
+ActiveRecord::Schema.define(version: 2022_05_13_121519) do
+
+  create_table "contracts", force: :cascade do |t|
+    t.string "numero"
+    t.integer "status"
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contracts_options", id: false, force: :cascade do |t|
+    t.integer "contract_id", null: false
+    t.integer "option_id", null: false
+  end
+
+  create_table "contracts_users", id: false, force: :cascade do |t|
+    t.integer "contract_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "code"
+    t.text "desctiption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -18,6 +44,11 @@ ActiveRecord::Schema.define(version: 2022_05_13_080231) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role", default: 0

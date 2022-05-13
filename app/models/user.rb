@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable
 
-  enum role: { user: 0, admin: 1 }
+  has_and_belongs_to_many :contracts
+  enum role: [:user, :admin]
 end
