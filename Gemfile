@@ -27,6 +27,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # Custom Gems
 gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'jwt', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 
 group :development, :test do
