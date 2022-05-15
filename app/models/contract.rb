@@ -1,8 +1,18 @@
 class Contract < ApplicationRecord
-  enum status: [:pending, :active, :finished]
+  enum status: %w(pending active finished)
+
   has_and_belongs_to_many :options, dependent: :destroy
-  has_and_belongs_to_many :users, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
+  has_many :users, through: :subscriptions
 
+  validates :begin_date, presence: true
+  validates :numero, uniqueness: true
 
-  validates [:numero, :status, :begin_date, :end_date], presence: true
+  before_save :check_numero
+
+  private
+
+  def check_numero
+    self.numero = "#" + SecureRandom.hex(2) if numero.blank?
+  end
 end

@@ -13,3 +13,10 @@ en:
       destroy:
         success: "user deleted"
         error: "user deletion failed : %{error_message}"
+    contracts:
+      create:
+        error: "contract creation failed : %{error_message}"
+        validates:
+          presence:
+            begin_date: "begin date is required"
+            users_options: "users and options are required"
