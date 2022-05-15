@@ -32,3 +32,4 @@ en:
         not_exist: "contract not subscribed"
         success: "unsubscribed successfully"
         error: "unsubscription failed : %{error_message}"
+        date_error: "end subscription date must be greater or equal to subscription date"
