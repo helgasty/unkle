@@ -11,10 +11,11 @@ Rails.application.routes.draw do
       post 'unsubscribe', to: 'contracts#unsubscribe'
 
       # user routes
-      resources :users, only:  [:create, :destroy]
-      get 'users', to: 'users#my_account'
-      get 'users/:email', to: 'users#show'
+      resources :users, only:  [:create]
+      get 'my_account', to: 'users#my_account'
+      get 'users', to: 'users#show'
       get 'users_list', to: 'users#list'
+      delete 'users', to: 'users#destroy'
 
       # option routes
       get 'option', to: 'options#list'
