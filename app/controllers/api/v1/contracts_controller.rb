@@ -2,6 +2,7 @@ class Api::V1::ContractsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_contract, only: [:show, :subscribe, :unsubscribe]
   before_action :set_contract_collection, only: [:list]
+  load_and_authorize_resource
 
   include ContractsHelper
 

@@ -2,6 +2,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :destroy]
   before_action :set_user_collection, only: [:list]
+  load_and_authorize_resource
 
   def create
     user = User.new(user_params)
