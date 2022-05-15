@@ -1,5 +1,7 @@
 en:
   api:
+    access:
+      denied: "You are not authorized"
     login:
       login_success: "login success"
       password_failed: "invalid password"

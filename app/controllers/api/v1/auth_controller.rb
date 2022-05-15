@@ -16,6 +16,8 @@ module Api
           else
             if user.valid_password?(params[:user][:password])
               sign_in(:user, user)
+
+              # if user sign_in successfully, generate new JWT token
               render json: { status: 'OK', message: t('api.login.login_success'), token: Jwt.encode(user_id: user.id) },  status: 200
             else
               render json: { status: 'KO', message: t('api.login.password_failed')}, status: 403
