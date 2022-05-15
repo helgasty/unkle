@@ -7,3 +7,9 @@ en:
       bad_request: "invalid request"
       jwt_token_expired: "session expired"
       jwt_token_error: "jwt token error"
+    users:
+      create:
+        error: "user creation failed : %{error_message}"
+      destroy:
+        success: "user deleted"
+        error: "user deletion failed : %{error_message}"
