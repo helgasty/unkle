@@ -22,3 +22,13 @@ en:
           presence:
             begin_date: "begin date is required"
             users_options: "users and options are required"
+    subscriptions:
+      subscribe:
+        already_exist: "already subscribed"
+        not_exist: "contract not found"
+        success: "subscribed"
+        error: "subscription failed : %{error_message}"
+      unsubscribe:
+        not_exist: "contract not subscribed"
+        success: "unsubscribed successfully"
+        error: "unsubscription failed : %{error_message}"
