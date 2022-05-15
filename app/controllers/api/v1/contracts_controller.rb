@@ -27,7 +27,7 @@ class Api::V1::ContractsController < ApplicationController
   end
 
   def my_contracts
-    contracts = Subscription.where(user: @current_user, end_subscription_at: nil).map(&:contract)
+    contracts = Subscription.valid_subscriptions.where(user: @current_user).map(&:contract)
 
     render json: format_collection(contracts), status: 200
   end
@@ -56,24 +56,21 @@ class Api::V1::ContractsController < ApplicationController
   end
 
   def unsubscribe
-    if params[:email].present? && !@current_user.admin?
-      render json: { results: t('api.access.denied') }, status: 403
-    else
-      user = (params[:email].present? ? User.find_by_email(params[:email]) : @current_user)
-      subscription = Subscription.find_by(user: user, contract: @contract, end_subscription_at: nil)
-      if subscription.nil?
-        render json: { results: t('api.subscriptions.unsubscribe.not_exist') }, status: 200
-      else
-        # if no date set, set end_subscription_at to today
-        en_subscription_at = params[:end_subscription_at].present? ? Date.parse(params[:en_subscription_at]) : Date.today
-        subscription.update(end_subscription_at: en_subscription_at)
+    user = (params[:email].present? && @current_user.is_admin?) ? User.find_by_email(params[:email]) : @current_user
+    subscription = Subscription.find_by(user: user, contract: @contract, end_subscription_at: nil)
 
-        render json: { results: t('api.subscriptions.unsubscribe.success') }, status: 200
-      end
+    if subscription.nil?
+      render json: { results: t('api.subscriptions.unsubscribe.not_exist') }, status: 200
+    else
+      # if end_subscription_at params empty, end_subscription_at = Date.today
+      end_subscription_at = params[:end_subscription_at].present? ? params[:end_subscription_at] : Date.today
+      subscription.end_subscription_at = end_subscription_at
+      subscription.save!
+
+      render json: { results: t('api.subscriptions.unsubscribe.success') }, status: 200
     end
   rescue => e
-
-    render json: { results: t('api.subscriptions.unsubscribe.error', { error_message: e.message }) }, status: 500
+    render json: { results: t('api.subscriptions.unsubscribe.error', error_message: e.message ) }, status: 500
   end
 
   def subscribe_contract(user, contract)
@@ -83,7 +80,8 @@ class Api::V1::ContractsController < ApplicationController
   private
 
   def set_contract
-    @contract = Contract.find(params[:id])
+    #TODO : fix raise exception if contract not found
+    @contract = Contract.find_by_id(params[:id])
   end
 
   def set_contract_collection

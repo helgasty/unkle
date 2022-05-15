@@ -26,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
 
     render json: { results: t('api.users.destroy.success') }, status: 200
   rescue => e
