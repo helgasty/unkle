@@ -30,6 +30,7 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'jwt', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 gem 'cancancan', '~> 3.3'
+gem 'whenever', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
