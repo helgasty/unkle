@@ -20,7 +20,7 @@ class Api::V1::ContractsController < ApplicationController
       render json: { results: contract }, status: 200
     else
 
-      render json: { results: t('api.contracts.create.validates.presenkce.users_options') }, status: 500
+      render json: { results: t('api.contracts.create.validates.presence.users_options') }, status: 500
     end
   rescue => e
     render json: { results: t('api.contracts.create.error', { error_message: e.message }) }, status: 500
