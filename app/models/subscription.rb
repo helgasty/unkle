@@ -8,7 +8,7 @@ class Subscription < ApplicationRecord
   private
 
   def validate_subscription_date
-    if end_subscription_at < subscribed_at
+    if end_subscription_at.present? && end_subscription_at < subscribed_at
       errors.add('vadidate_subscription_date', I18n.t('api.subscriptions.unsubscribe.date_error'))
     end
   end
