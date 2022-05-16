@@ -90,6 +90,6 @@ class Api::V1::ContractsController < ApplicationController
   end
 
   def contract_params
-    params.require(:contract).permit(:numero, :details, :amount, :begin_date, :end_date)
+    params.require(:contract).permit(:numero, :details, :amount, :begin_date, :end_date, :users, :options)
   end
 end

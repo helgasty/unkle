@@ -1,6 +1,7 @@
 class Contract < ApplicationRecord
   enum status: %w(pending active finished)
 
+  attr_accessor :users, :options
   has_and_belongs_to_many :options
   has_many :subscriptions
   has_many :users, through: :subscriptions
