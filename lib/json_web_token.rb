@@ -1,4 +1,4 @@
-class Jwt
+class JsonWebToken
   class << self
     JWT_SECRET = ENV["JWT_SECRET_KEY"]
 
@@ -8,6 +8,7 @@ class Jwt
     end
 
     def decode(token)
+      p token
       body = JWT.decode(token, JWT_SECRET)[0]
       HashWithIndifferentAccess.new body
     rescue JWT::ExpiredSignature, JWT::VerificationError

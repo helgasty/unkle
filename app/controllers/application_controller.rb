@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_request
-    decoded_auth_token = Jwt.decode(request.headers['token'])
+    decoded_auth_token = JsonWebToken.decode(request.headers['token'])
 
     # check token already valid
     case decoded_auth_token
