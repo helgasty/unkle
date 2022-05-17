@@ -2,7 +2,7 @@ class Subscription < ApplicationRecord
   belongs_to :contract
   belongs_to :user
 
-  scope :valid_subscriptions, -> { where("end_subscription_at is null OR end_subscription_at > #{Date.today}") }
+  scope :valid_subscriptions, -> { where("end_subscription_at is null OR end_subscription_at > '#{DateTime.now}'") }
   validate :validate_subscription_date
 
   private

@@ -8,7 +8,7 @@ module ContractsHelper
       status: contract.status,
       begin_date: contract.begin_date,
       end_date: contract.end_date,
-      subscriptions: contract.subscriptions,
+      subscriptions: contract.subscriptions.valid_subscriptions,
       users: contract.users,
       options: contract.options
     }

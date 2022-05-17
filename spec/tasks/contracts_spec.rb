@@ -15,12 +15,12 @@ describe "Update contracts status" do
       contract5 = create(:contract, begin_date: Date.today - 20.days, end_date: Date.today)
 
       Rake::Task["contracts:update_status"].invoke
-
+      
       expect(contract1.reload.status).to eq("pending")
       expect(contract2.reload.status).to eq("active")
       expect(contract3.reload.status).to eq("active")
       expect(contract4.reload.status).to eq("finished")
-      expect(contract5.reload.status).to eq("active")
+      expect(contract5.reload.status).to eq("finished")
     end
   end
 end

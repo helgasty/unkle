@@ -19,8 +19,8 @@ Option.create(code: 'impaye', description: 'Option loyer impayé')
 Option.create(code: 'degradation', description: 'Option dégradation')
 
 # create contracts
-contract1 = Contract.create(numero: '#00001', details: 'Lorem ipsum dolor...', options: Option.where(code: 'tout_risque'), amount: '1250.32')
-contract2 = Contract.create(numero: '#00002', details: 'Lorem ipsum dolor...', options: Option.where(code: ['incendie', 'degradation', 'impaye']), amount: '960.23')
+contract1 = Contract.create(numero: '#00001', details: 'Lorem ipsum dolor...', begin_date: Date.today, options: Option.where(code: 'tout_risque'), amount: '1250.32')
+contract2 = Contract.create(numero: '#00002', details: 'Lorem ipsum dolor...', begin_date: Date.today, options: Option.where(code: ['incendie', 'degradation', 'impaye']), amount: '960.23')
 user.contracts << contract1
 admin.contracts << contract2
 

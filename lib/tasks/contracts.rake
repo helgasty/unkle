@@ -5,9 +5,9 @@ namespace :contracts do
     contracts = Contract.all
 
     contracts.each do |contract|
-      if (contract.begin_date <= Date.today) && (contract.end_date.nil? || contract.end_date >= Date.today)
+      if (contract.begin_date <= Date.today) && (contract.end_date.nil? || contract.end_date >= DateTime.now)
         contract.update(status: :active)
-      elsif contract.end_date.present? && contract.end_date < Date.today
+      elsif contract.end_date.present? && contract.end_date < DateTime.now
         contract.update(status: :finished)
 
         # end all contracts subscriptions

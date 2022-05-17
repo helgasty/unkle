@@ -44,7 +44,7 @@ class Api::V1::ContractsController < ApplicationController
   def subscribe
     if @current_user.contracts.ids.include?(params[:id].to_i)
       render json: { results: t('api.subscriptions.subscribe.already_exist') }, status: 500
-    elsif @contract.nil?
+    elsif @contract.id.nil?
       render json: { results: t('api.subscriptions.subscribe.not_exist') }, status: 200
     else
       subscribe_contract(@current_user, @contract)
@@ -81,8 +81,7 @@ class Api::V1::ContractsController < ApplicationController
   private
 
   def set_contract
-    #TODO : fix raise exception if contract not found
-    @contract = Contract.find_by_id(params[:id])
+    @contract = Contract.find_by_id(params[:id]) || Contract.new
   end
 
   def set_contract_collection
