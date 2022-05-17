@@ -38,8 +38,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def set_user
-    #TODO : fix raise exception if contract not found
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by_id(params[:id]) || User.new
   end
 
   def set_user_collection

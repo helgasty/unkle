@@ -81,8 +81,7 @@ class Api::V1::ContractsController < ApplicationController
   private
 
   def set_contract
-    #TODO : fix raise exception if contract not found
-    @contract = Contract.find_by_id(params[:id])
+    @contract = Contract.find_by_id(params[:id]) || Contract.new
   end
 
   def set_contract_collection
