@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   namespace :api do
     namespace :v1 do
       post 'login', to: 'auth#login'
@@ -11,11 +13,10 @@ Rails.application.routes.draw do
       post 'unsubscribe', to: 'contracts#unsubscribe'
 
       # user routes
-      resources :users, only:  [:create]
+      resources :users, only:  [:create, :show]
       get 'my_account', to: 'users#my_account'
-      get 'users', to: 'users#show'
       get 'users_list', to: 'users#list'
-      delete 'users', to: 'users#destroy'
+      delete 'users/:id', to: 'users#destroy'
 
       # option routes
       get 'option', to: 'options#list'

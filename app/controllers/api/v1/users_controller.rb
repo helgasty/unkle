@@ -38,7 +38,8 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by_email(params[:email])
+    #TODO : fix raise exception if contract not found
+    @user = User.find_by_id(params[:id])
   end
 
   def set_user_collection
