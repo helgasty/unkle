@@ -20,20 +20,15 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/api/v1/users?email=user@example.com",
+							"raw": "{{url}}/api/v1/users/2",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "user@example.com"
-								}
+								"users",
+								"2"
 							]
 						}
 					},
@@ -142,20 +137,15 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/api/v1/users?email=user@example.com",
+							"raw": "{{url}}/api/v1/users/2",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"users"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "user@example.com"
-								}
+								"users",
+								"2"
 							]
 						}
 					},
